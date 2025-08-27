@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker:20.10.7-git' // หรือ custom image ที่มี git + bash
+            image 'docker:20.10.7'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -18,10 +18,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh '''
-                docker rm -f demo-app || true
-                docker run -d -p 5000:5000 --name demo-app jenkins-demo-app:latest
-                '''
+                sh 'docker run -d -p 5000:5000 --name demo-app jenkins-demo-app:latest'
             }
         }
     }
