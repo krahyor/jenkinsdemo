@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t jenkins-demo-app:latest .'
+                sh 'sudo docker build -t jenkins-demo-app:latest .'
             }
         }
         stage('Run Container') {
